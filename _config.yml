@@ -85,6 +85,6 @@ baidusitemap:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/ueiu/ueiu.github.io
+  repo: git@github.com:ueiu/ueiu.github.io.git
   branch: master
   message: '站点更新:{{now("YYYY-MM-DD HH:mm:ss")}}'
