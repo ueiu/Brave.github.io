@@ -3,7 +3,8 @@ title: Linux 连接 MySQL 命令
 typora-root-url: ..
 typora-copy-images-to: ../images
 date: 2019-03-12 15:51:15
-tags: Linux
+tags: 
+- Linux
 ---
 
 ## <center>记录一下Linux环境下怎么连接Mysql数据库的</center><!-- more -->

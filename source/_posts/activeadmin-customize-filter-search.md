@@ -3,7 +3,9 @@ title: ActiveAdmin自定义filter的搜索条件
 typora-root-url: ..
 typora-copy-images-to: ../images
 date: 2019-06-17 10:39:54
-tags: [Ruby On Rails,ActiveAdmin]
+tags: 
+- Ruby On Rails
+- ActiveAdmin
 ---
 
 ### 前言
