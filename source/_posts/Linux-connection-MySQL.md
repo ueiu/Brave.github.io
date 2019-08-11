@@ -7,7 +7,9 @@ tags:
 - Linux
 ---
 
-## <center>记录一下Linux环境下怎么连接Mysql数据库的</center><!-- more -->
+## <center>记录一下Linux环境下怎么连接Mysql数据库的</center>
+
+<!-- more -->
 
 连接MySQL的格式： `-h` `-u` `-p` 与**主机地址/用户名/用户密码**可以不加入空格
 
