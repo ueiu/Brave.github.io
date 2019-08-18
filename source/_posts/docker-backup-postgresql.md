@@ -72,7 +72,7 @@ dev.sql
 
 ```bash
 # dev 是要到导入的数据库名，根据自己需要更换
-root@101768619d0c:/# psql -U ueiu dev < "/var/lib/postgresql/data/dev.sql"
+root@101768619d0c:/# psql -U ueiu dev < /var/lib/postgresql/data/dev.sql
 ```
 
 虽然可以在`Source`目录中看到`dev.sql`这个文件，但导入时的路径还是要填`Destination`的路径，不然会提示找不到路径/文件的。
