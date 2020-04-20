@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<link rel="alternate" href="/default" title="Brave's Blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://ueiu.github.io/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>Brave's Blog</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Brave's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Brave's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于我
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><section id="posts" class="posts"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/hello-world/">Hello World</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-04-20
+        </span></div>
+    </header>
+
+    <div class="post-content"><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+          <div class="read-more">
+            <a href="/hello-world/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/mac-set-tomcat-uriencoding/">Mac 解决 Tomcat URI传参乱码问题</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-04-20
+        </span><span class="post-category">
+            <a href="/categories/Java/">Java</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>在调试本地Java Web项目的API时，应该正常显示的数据并没有出现，debug后发现API传入的参数值乱码了，所以这里记录一下我的解决办法。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="Tomcat-所在的目录"><a href="#Tomcat-所在的目录" class="headerlink" title="Tomcat 所在的目录"></a>Tomcat 所在的目录</h4><p>如果使用不同的安装方式根据自己的安装方找到Tomcat 所在的目录，我是采用<code>homebrew</code>安装的，所以路径如下：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>local<span class="regexp">/Cellar/</span>&lt;你安装的版本&gt;<span class="regexp">/&lt;具体的版本号&gt;/</span>libexec</span><br></pre></td></tr></table></figure>
+
+<h4 id="编辑-conf-server-xml"><a href="#编辑-conf-server-xml" class="headerlink" title="编辑/conf/server.xml"></a>编辑/conf/server.xml</h4><p>找到以下这行代码，添加 <code>URIEncoding=&quot;utf-8&quot;</code> 防止传入的参数出现中文乱码的情况。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;Connector <span class="attribute">port</span>=<span class="string">"8080"</span> <span class="attribute">protocol</span>=<span class="string">"HTTP/1.1"</span></span><br><span class="line">           <span class="attribute">connectionTimeout</span>=<span class="string">"20000"</span></span><br><span class="line">           <span class="attribute">redirectPort</span>=<span class="string">"8443"</span></span><br><span class="line">           <span class="attribute">URIEncoding</span>=<span class="string">"utf-8"</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最后重启一下Tomcat。</p>
+<h4 id="修改结果"><a href="#修改结果" class="headerlink" title="修改结果"></a>修改结果</h4><div>
+    <center>修改前参数：</center>
+    <div align="center"> <img src="https://i.imgur.com/IClGs84.png"> </div>
+</div>
+<br>
+
+<div>
+    <center>修改后参数：</center>
+    <div align="center"> <img src="https://i.imgur.com/clSBYz1.png"> </div>
+</div>
+
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/lets-encrypt-free-applicantion/">Let's Encrypt申请免费htpps证书-给你的网站上把小绿锁</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-08-17
+        </span><span class="post-category">
+            <a href="/categories/网站/">网站</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/centos-deploy-rsshub/">CentOS7系统部署RSSHub</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-08-11
+        </span></div>
+    </header>
+
+    <div class="post-content"><p>因为薅到了阿里云的羊毛，买入一个轻量云服务器，闲置也不好，所以拿这服务器来部署一个高效获取聚合信息的工具，就是本文的主角：<strong>RSSHub</strong>。</p>
+          <div class="read-more">
+            <a href="/centos-deploy-rsshub/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/docker-backup-postgresql/">Docker中导入/导出PostgreSql</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-08-04
+        </span><span class="post-category">
+            <a href="/categories/Docker/">Docker</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>​    因为有个项目PostgreSql数据库是运行在Docker容器中的，现在想把里面的数据导出来迁移导入到另一个机器上，一起看看怎么操作吧。</p>
+          <div class="read-more">
+            <a href="/docker-backup-postgresql/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/activeadmin-customize-filter-search/">ActiveAdmin自定义filter的搜索条件</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-06-17
+        </span></div>
+    </header>
+
+    <div class="post-content"><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这几天有一个接到了一个新的需求，需要指定毕业年份搜索相对应的学生。但是因为毕业年份这个字段是存放在经历表的，用ActiveAdmin里filter的<em>date_range</em> 过滤器也不是很好看。所以我们来自定义一个filter。</p>
+          <div class="read-more">
+            <a href="/activeadmin-customize-filter-search/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <nav class="pagination"></nav></section></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:bautuoyoul@email.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/ueiu" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">ueiu</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>
