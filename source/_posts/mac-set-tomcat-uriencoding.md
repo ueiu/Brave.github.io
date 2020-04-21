@@ -1,5 +1,6 @@
 ---
-title: Mac 解决 Tomcat URI传参乱码问题
+title: Mac 解决 Tomcat URI 传参乱码问题
+description: 记录 Mac 解决 Tomcat URI 传参乱码问题。
 typora-root-url: ..
 typora-copy-images-to: ../images
 date: 2020-04-20 16:20:25
