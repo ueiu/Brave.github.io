@@ -1,4 +1,6 @@
-
 [submodule "themes/even"]
 	path = themes/even
-	url = git@github.com:ahonn/hexo-theme-even.git
+	url = git@github.com:ueiu/hexo-theme-even.git
+  # The submodule will never be considered modified
+  # (but will nonetheless show up in the output of status and commit when it has been staged).
+  ignore = all
