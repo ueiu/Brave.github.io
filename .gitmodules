@@ -1,1 +1,4 @@
 
+[submodule "themes/even"]
+	path = themes/even
+	url = git@github.com:ahonn/hexo-theme-even.git
