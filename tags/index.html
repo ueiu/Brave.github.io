@@ -65,7 +65,7 @@
         <li class="mobile-menu-item">分类
           </li>
       </a><a href="/about/">
-        <li class="mobile-menu-item">关于我
+        <li class="mobile-menu-item">关于
           </li>
       </a></ul>
 </nav>
@@ -96,7 +96,7 @@
         </li>
       <li class="menu-item">
           <a class="menu-item-link" href="/about/">
-            关于我
+            关于
             </a>
         </li>
       </ul></nav>
@@ -111,7 +111,8 @@
     <div class="tag-cloud-tags">
       <a href="/tags/Ruby-On-Rails/" style="font-size: 16px;">Ruby On Rails</a> <a href="/tags/ActiveAdmin/" style="font-size: 16px;">ActiveAdmin</a> <a href="/tags/RSSHub/" style="font-size: 16px;">RSSHub</a> <a href="/tags/瞎折腾/" style="font-size: 16px;">瞎折腾</a> <a href="/tags/ssl证书/" style="font-size: 16px;">ssl证书</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 16px;">Let's Encrypt</a> <a href="/tags/nginx/" style="font-size: 16px;">nginx</a> <a href="/tags/Mac/" style="font-size: 16px;">Mac</a> <a href="/tags/Tomcat/" style="font-size: 16px;">Tomcat</a>
     </div>
-  </div></div><div class="comments" id="comments"></div></div>
+  </div></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
       </main>
 
       <footer id="footer" class="footer"><div class="social-links"><a href="mailto:bautuoyoul@email.com" class="iconfont icon-email" title="email"></a>
@@ -138,7 +139,22 @@
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+    </div>
+<!-- valine Comments version: 1.4.9 -->
+<script src="//unpkg.com/valine@1.4.9/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        app_id: "mHDXFlCsnIWo19Rl2vjd4ESz-9Nh9j0Va",
+        app_key: "2CUBhdIzMSJBOt6snJnF68tY",
+        placeholder: "在这高谈阔论吧！",
+        avatar: 'retro',
+        pageSize: '10',
+        recordIP: 'true'
+    });
+</script>
+
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
