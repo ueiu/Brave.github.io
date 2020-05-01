@@ -1,5 +1,5 @@
 ---
-title: CentOS7系统部署RSSHub
+title: CentOS7 系统部署 RSSHub
 typora-root-url: ..
 typora-copy-images-to: ../images
 date: 2019-08-11 20:09:34
