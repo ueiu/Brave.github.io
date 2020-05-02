@@ -125,10 +125,10 @@
     </div>
   </div><div class="post-content"><p>在调试本地Java Web项目的API时，应该正常显示的数据并没有出现，debug后发现API传入的参数值乱码了，所以这里记录一下我的解决办法。</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="Tomcat-所在的目录"><a href="#Tomcat-所在的目录" class="headerlink" title="Tomcat 所在的目录"></a>Tomcat 所在的目录</h4><p>如果使用不同的安装方式根据自己的安装方找到Tomcat 所在的目录，我是采用<code>homebrew</code>安装的，所以路径如下：</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>local<span class="regexp">/Cellar/</span>&lt;你安装的版本&gt;<span class="regexp">/&lt;具体的版本号&gt;/</span>libexec</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/usr/local/Cellar/&lt;你安装的版本&gt;/&lt;具体的版本号&gt;/libexec</span><br></pre></td></tr></table></figure>
 
 <h4 id="编辑-conf-server-xml"><a href="#编辑-conf-server-xml" class="headerlink" title="编辑/conf/server.xml"></a>编辑/conf/server.xml</h4><p>找到以下这行代码，添加 <code>URIEncoding=&quot;utf-8&quot;</code> 防止传入的参数出现中文乱码的情况。</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;Connector <span class="attribute">port</span>=<span class="string">"8080"</span> <span class="attribute">protocol</span>=<span class="string">"HTTP/1.1"</span></span><br><span class="line">           <span class="attribute">connectionTimeout</span>=<span class="string">"20000"</span></span><br><span class="line">           <span class="attribute">redirectPort</span>=<span class="string">"8443"</span></span><br><span class="line">           <span class="attribute">URIEncoding</span>=<span class="string">"utf-8"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</span><br><span class="line">           connectionTimeout=&quot;20000&quot;</span><br><span class="line">           redirectPort=&quot;8443&quot;</span><br><span class="line">           URIEncoding=&quot;utf-8&quot; /&gt;</span><br></pre></td></tr></table></figure>
 
 <p>最后重启一下Tomcat。</p>
 <h4 id="修改结果"><a href="#修改结果" class="headerlink" title="修改结果"></a>修改结果</h4><div>
