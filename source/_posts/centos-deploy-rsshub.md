@@ -3,6 +3,8 @@ title: CentOS7 系统部署 RSSHub
 typora-root-url: ..
 typora-copy-images-to: ../images
 date: 2019-08-11 20:09:34
+categories:
+- Centos
 tags: 
 - RSSHub
 - 瞎折腾
@@ -113,7 +115,10 @@ $ ldd /opt/google/chrome/chrome | grep "not found"
 
 ![](https://i.loli.net/2019/08/18/McVfG5EUCJuayAw.png)
 
-### 参考资料
+------
+
+参考资料
+
 - [RSSHub部署文档](https://docs.rsshub.app/install/ "部署 | RSSHub")
 - [在CentOS上安装Google Chrome](https://intoli.com/blog/installing-google-chrome-on-centos/) 
 

@@ -7,9 +7,9 @@ date: 2019-08-17 21:27:24
 categories:
 - 网站
 tags:
-- ssl证书
+- ssl 证书
 - Let's Encrypt
-- nginx
+- Nginx
 ---
 
 [Let’s Encrypt](https://letsencrypt.org/) 是一家免费、开放、自动化的证书颁发机构（CA），目的是为了推进网站使用 https，所以这次我们使用它来为网站生成 https 证书。
