@@ -103,7 +103,9 @@ sudo systemctl restart docker
    ```
 
 2. Mac
-打开 Docker -> Perferences -> Dameon -> Advanced 编辑 json 文件。将 Centos 中示例的加速地址放入 `registry-mirrors` 数组中，点击 Apply & Restart 按钮，等待 Docker 重启并应用配置的镜像加速服务。
+  打开 Docker -> Perferences -> Dameon -> Advanced 编辑 json 文件。将 Centos 中示例的加速地址放入 `registry-mirrors` 数组中，点击 Apply & Restart 按钮，等待 Docker 重启并应用配置的镜像加速服务。
+
+  ![编辑 Docker Dameon.json 文件](https://i.imgur.com/ocOgNcE.png)
 
 ### 验证配置
 
