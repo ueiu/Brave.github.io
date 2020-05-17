@@ -9,6 +9,7 @@ categories:
 tags:
 - Mac
 - Centos
+- Windows
 ---
 
 现在越来越多的开源项目以及公司项目用上了 Docker，但是在国内拉取镜像经常会遇到无法拉取或者拉取缓慢导致失败的情况。在这个时候我们可以配置 Docker 的镜像加速，Docker 官方以及国内的云服务商大多都提供了相应的加速服务。
@@ -103,9 +104,16 @@ sudo systemctl restart docker
    ```
 
 2. Mac
-  打开 Docker -> Perferences -> Dameon -> Advanced 编辑 json 文件。将 Centos 中示例的加速地址放入 `registry-mirrors` 数组中，点击 Apply & Restart 按钮，等待 Docker 重启并应用配置的镜像加速服务。
 
-  ![编辑 Docker Dameon.json 文件](https://i.imgur.com/ocOgNcE.png)
+   打开 Docker -> Perferences -> Dameon -> Advanced 编辑 json 文件。将 Centos 中示例的加速地址放入 `registry-mirrors` 数组中，点击 Apply & Restart 按钮，等待 Docker 重启并应用配置的镜像加速服务。
+
+  ![编辑 Mac Docker 配置](https://i.imgur.com/ocOgNcE.png)
+
+3. Windows10
+
+   点击系统右下角托盘 Docker -> Settings -> Docker Engine-> 编辑 json 文件。将 Centos 中示例的加速地址放入 `registry-mirrors` 数组中，点击 Apply & Restart 按钮，等待 Docker 重启并应用配置的镜像加速服务。
+
+  ![编辑 Windows10 Docker 配置](https://i.imgur.com/ZHatx2n.png)
 
 ### 验证配置
 
