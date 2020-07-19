@@ -43,23 +43,8 @@ source ~/.bash_profile
 
 ```shell
 identify -list format | grep JPEG
-# 一般会出现这样的输出
-           see part 5 which describes the image encoding (RLE, JPEG, JPEG-LS),
-           and supplement 61 which adds JPEG-2000 encoding.
-      J2C* JP2       rw-   JPEG-2000 Code Stream Syntax (2.3.1)
-      J2K* JP2       rw-   JPEG-2000 Code Stream Syntax (2.3.1)
-      JNG* PNG       rw-   JPEG Network Graphics
-      JP2* JP2       rw-   JPEG-2000 File Format Syntax (2.3.1)
-      JPC* JP2       rw-   JPEG-2000 Code Stream Syntax (2.3.1)
-      JPE* JPEG      rw-   Joint Photographic Experts Group JFIF format (libjpeg 90)
-     JPEG* JPEG      rw-   Joint Photographic Experts Group JFIF format (libjpeg 90)
-      JPG* JPEG      rw-   Joint Photographic Experts Group JFIF format (libjpeg 90)
-      JPM* JP2       rw-   JPEG-2000 Code Stream Syntax (2.3.1)
-      JPS* JPEG      rw-   Joint Photographic Experts Group JFIF format (libjpeg 90)
-      JPT* JP2       rw-   JPEG-2000 File Format Syntax (2.3.1)
-      PGX* PGX       rw-   JPEG 2000 uncompressed format
-    PJPEG* JPEG      rw-   Joint Photographic Experts Group JFIF format (libjpeg 90)
 ```
+![终端输出](https://i.imgur.com/Oc0d7RX.png)
 
 ------
 
