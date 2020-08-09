@@ -1,5 +1,6 @@
 ---
 title: Docker 中导入/导出 PostgreSql
+description: Docker 中导入/导出 PostgreSql。
 typora-root-url: ..
 typora-copy-images-to: ../images
 date: 2019-08-04 18:09:00
@@ -7,10 +8,6 @@ categories:
 - Docker
 tags:
 ---
-
-​	因为有个项目PostgreSql数据库是运行在Docker容器中的，现在想把里面的数据导出来迁移导入到另一个机器上，一起看看怎么操作吧。
-
-<!-- more -->
 
 ### 什么是Docker Volume？
 在操作之前，我们要先了解一下Docker Volume ，这样才方便理解我们之后的操作。

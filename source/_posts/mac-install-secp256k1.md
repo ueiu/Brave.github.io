@@ -1,6 +1,6 @@
 ---
-title: Mac 安装 secp256k1
-description: Mac 安装 secp256k1。
+title: Mac 安装 Secp256k1
+description: Mac 安装 Secp256k1。
 typora-root-url: ..
 typora-copy-images-to: ../images
 date: 2020-07-19 17:01:54
