@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="使用 acme.sh 申请 https 证书。"><meta name="keywords" content="ssl 证书, Let's Encrypt, Nginx, Brave's Blog"><link rel="alternate" href="/default" title="Brave's Blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://blog.weihua.life/lets-encrypt-free-applicantion/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>Let's Encrypt 申请免费 https 证书 - 给你的网站上把小绿锁 - Brave's Blog</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Brave's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Brave's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Let's Encrypt 申请免费 https 证书 - 给你的网站上把小绿锁
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-08-17
+        </span><span class="post-category">
+            <a href="/categories/网站/">网站</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-acme-sh"><span class="toc-text">安装 acme.sh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成证书"><span class="toc-text">生成证书</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#生成默认-RSA-证书"><span class="toc-text">生成默认 RSA 证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成-ECC-证书"><span class="toc-text">生成 ECC 证书</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#copy-安装证书"><span class="toc-text">copy/安装证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新证书"><span class="toc-text">更新证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新-amce-sh"><span class="toc-text">更新 amce.sh</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><p><a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a> 是一家免费、开放、自动化的证书颁发机构（CA），目的是为了推进网站使用 https，所以这次我们使用它来为网站生成 https 证书。</p>
+<p>我们使用 <a href="https://acme.sh/" target="_blank" rel="noopener">acme.sh</a> 来安装我们的证书，acme.sh 有中文文档的支持，更是方便。</p>
+<h3 id="安装-acme-sh"><a href="#安装-acme-sh" class="headerlink" title="安装 acme.sh"></a>安装 acme.sh</h3><p>我们通过下面这个命令安装 acme.sh：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl https://get.acme.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p>acme.sh 会完成3个操作：</p>
+<ol>
+<li>把 acme.sh 安装到你的 <strong>home</strong> 目录下：<code>~/.acme.sh/</code>。所有证书也将放置在此文件夹中。</li>
+<li>创建一个 bash 的 alias，方便你的使用： <code>alias acme.sh=~/.acme.sh/acme.sh</code>。</li>
+<li>自动为你创建 cronjob，每天 0:00 点自动检测所有的证书，如果快过期了，需要更新，则会自动更新证书。可以通过命令 <code>corntab -l</code> 查看。</li>
+</ol>
+<p>安装完成后，必须关闭当前终端重新打开使别名生效。更多用法可以参考 <a href="https://github.com/acmesh-official/acme.sh/wiki" target="_blank" rel="noopener">WIKI 页面</a> 或者通过命令 <code>acme.sh --help</code> 查看。</p>
+<h3 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h3><p>acme.sh 实现了 <strong>acme</strong> 协议支持的所有验证协议，一般有两种方式验证：http 和 dns 验证。dns 验证又分为：手动 dns 和 dns api 方式。我们这里使用 dns api 的方式进行验证。</p>
+<blockquote>
+<p>dns 方式的真正强大之处在于可以使用域名解析商提供的 api 自动添加 txt 记录完成验证。<br>acme.sh 目前支持 cloudflare，dnspod，cloudxns，godaddy 以及 ovh 等数十种解析商的自动集成。</p>
+<p>更多解析商的使用可以看<a href="https://github.com/acmesh-official/acme.sh/wiki/dnsapi" target="_blank" rel="noopener">这里</a>。</p>
+</blockquote>
+<p>因为我的域名是在腾讯云的，所以我这里使用 dnspod 完成。首先我们需要 <a href="https://console.dnspod.cn/account/token" target="_blank" rel="noopener">申请 API TOKEN</a>：</p>
+<p><img src="https://i.imgur.com/gUsN4C9.png" alt></p>
+<p>申请到 <strong>ID</strong> 以及 <strong>TOKEN</strong> 后，我们需要设置这个配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> DP_Id=<span class="string">"id"</span></span><br><span class="line"><span class="built_in">export</span> DP_Key=<span class="string">"token"</span></span><br></pre></td></tr></table></figure>
+
+<p>配置成功后的 <code>DP_Id</code>和 <code>DP_Key</code>将被保存<code>~/.acme.sh/account.conf</code> 中。</p>
+<p>acme.sh 支持 RSA 证书以及 ECC 证书，所以下面有两种生成方式可供选择：</p>
+<h4 id="生成默认-RSA-证书"><a href="#生成默认-RSA-证书" class="headerlink" title="生成默认 RSA 证书"></a>生成默认 RSA 证书</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">acme.sh --issue --dns dns_dp -d test.com -d *.test.com</span><br></pre></td></tr></table></figure>
+
+<h4 id="生成-ECC-证书"><a href="#生成-ECC-证书" class="headerlink" title="生成 ECC 证书"></a>生成 ECC 证书</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">acme.sh --issue --dns dns_dp -d test.com -d *.test.com --keylength ec-256</span><br></pre></td></tr></table></figure>
+
+<p>注意这里第一个域名为主域名，后面为泛域名。证书生成成功后，默认保存在 <code>~/.acme.sh/你的主域名</code> 中。如果生成的是 ECC 证书的话，则保存在 <code>~/.acme.sh/你的主域名_ecc</code> 中。按需选择即可。</p>
+<h3 id="copy-安装证书"><a href="#copy-安装证书" class="headerlink" title="copy/安装证书"></a>copy/安装证书</h3><p>证书生成以后，接下来需要把证书 copy 到真正需要用它的地方。这里仅使用 Nginx 作为示例说明，更多用法参考<a href="https://github.com/acmesh-official/acme.sh/wiki/说明#3-copy安装-证书" target="_blank" rel="noopener">这里</a>。</p>
+<blockquote>
+<p>注意，默认生成的证书都放在安装目录下: <code>~/.acme.sh/你的主域名</code>，请不要直接使用此目录下的文件，例如：不要直接让 nginx/apache 的配置文件使用这下面的文件。这里面的文件都是内部使用，而且目录结构可能会变化。<br>正确的使用方法是使用 <code>--installcert</code> 命令，并指定目标位置，然后证书文件会被copy到相应的位置，例如：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">acme.sh  --installcert  -d  test.com   \</span><br><span class="line">         --key-file   /etc/nginx/ssl/test.com.key \</span><br><span class="line">         --fullchain-file /etc/nginx/ssl/fullchain.cer \</span><br><span class="line">         --reloadcmd  <span class="string">"service nginx force-reload"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一个小提醒，这里用的是 service nginx force-reload，不是 service nginx reload，据测试，reload 并不会重新加载证书，所以用的 force-reload。<br>Nginx 的配置 <code>ssl_certificate</code> 使用 <code>/etc/nginx/ssl/fullchain.cer</code>，而非 <code>/etc/nginx/ssl/test.com.cer</code>，否则 <a href="https://www.ssllabs.com/ssltest/" target="_blank" rel="noopener">SSL Labs</a> 的测试会报 <code>Chain issues Incomplete</code> 错误。</p>
+</blockquote>
+<h3 id="更新证书"><a href="#更新证书" class="headerlink" title="更新证书"></a>更新证书</h3><p>因为在安装 acme.sh 时已经创建了一个 cronjob 去定时检查更新证书，所以我们不需要操心这个事情。</p>
+<h3 id="更新-amce-sh"><a href="#更新-amce-sh" class="headerlink" title="更新 amce.sh"></a>更新 amce.sh</h3><blockquote>
+<p>由于 acme 协议和 letsencrypt CA 都在频繁的更新，因此 acme.sh 也经常更新以保持同步。</p>
+</blockquote>
+<p><strong><code>Tips</code></strong> 这个东西还是建议开启自动升级的，试过忘记开启结果证书掉了哈哈哈。</p>
+<p>升级 acme.sh 到最新版：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">acme.sh --upgrade</span><br></pre></td></tr></table></figure>
+
+<p>如果你不想手动升级，可以开启自动升级：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">acme.sh  --upgrade  --auto-upgrade</span><br></pre></td></tr></table></figure>
+
+<p>之后，acme.sh 就会自动保持更新了。你也可以随时关闭自动更新：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">acme.sh --upgrade  --auto-upgrade  0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>参考资料</p>
+<ul>
+<li><a href="https://github.com/acmesh-official/acme.sh/wiki/说明" target="_blank" rel="noopener">acme.sh 使用说明</a></li>
+<li><a href="https://segmentfault.com/a/1190000015354547" target="_blank" rel="noopener">Let’s Encrypt 泛域名证书申请及配置</a></li>
+<li><a href="https://juejin.im/post/5b6542ed51882519d3468d6d" target="_blank" rel="noopener">acme.sh 配合 letsencrypt 配置泛域名</a></li>
+<li><a href="https://sb.sb/blog/linux-acme-sh-lets-encrypt-ssl/" target="_blank" rel="noopener">Linux 下使用 acme.sh 配置 Let’s Encrypt 免费 SSL 证书 + 通配符证书</a></li>
+</ul>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://blog.weihua.life">ueiu</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://blog.weihua.life/lets-encrypt-free-applicantion/">https://blog.weihua.life/lets-encrypt-free-applicantion/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/ssl-证书/">ssl 证书</a>
+            <a href="/tags/Let-s-Encrypt/">Let's Encrypt</a>
+            <a href="/tags/Nginx/">Nginx</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/mac-set-tomcat-uriencoding/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Mac 解决 Tomcat URI 传参乱码问题</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/centos-deploy-rsshub/">
+        <span class="next-text nav-default">CentOS7 系统部署 RSSHub</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:bautuoyoul@email.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/ueiu" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">ueiu</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+<!-- valine Comments version: 1.4.9 -->
+<script src="//unpkg.com/valine@1.4.9/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        app_id: "mHDXFlCsnIWo19Rl2vjd4ESz-9Nh9j0Va",
+        app_key: "2CUBhdIzMSJBOt6snJnF68tY",
+        placeholder: "在这高谈阔论吧！",
+        avatar: 'retro',
+        pageSize: '10',
+        recordIP: 'true'
+    });
+</script>
+
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>
