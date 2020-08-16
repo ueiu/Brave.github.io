@@ -5,6 +5,7 @@ typora-root-url: ..
 typora-copy-images-to: ../images
 date: 2020-08-09 16:39:28
 categories:
+- Ruby On Rails
 tags:
 - Ruby On Rails
 ---

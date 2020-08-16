@@ -5,9 +5,11 @@ typora-root-url: ..
 typora-copy-images-to: ../images
 date: 2020-07-19 17:01:54
 categories:
+- Ruby On Rails
 tags:
 - Mac
 - Ruby On Rails
+- Gems
 ---
 
 目前有个 Rails 项目因为用了 `eth` 这个 gem，这个 gem 的话依赖 `ffi` ，然而这个东西还需要安装  `secp256k1` ，不然会出现报错，所以这里记录一下怎么安装  `secp256k1` 。

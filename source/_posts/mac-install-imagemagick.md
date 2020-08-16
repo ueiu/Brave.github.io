@@ -5,9 +5,11 @@ typora-root-url: ..
 typora-copy-images-to: ../images
 date: 2020-07-20 18:38:32
 categories:
+- Ruby On Rails
 tags:
 - Mac
 - Ruby On Rails
+- Gems
 ---
 
 有好几个项目都用到了 `CarrierWave` ，而且会用到一些图片的处理，所以安装 `ImageMagick` 来进行一些处理。
