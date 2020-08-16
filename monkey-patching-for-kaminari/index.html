@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="使用猴子补丁修改 Kaminari，达到我们想要的效果。"><meta name="keywords" content="Ruby On Rails, Gems, Kaminari, Brave's Blog"><link rel="alternate" href="/default" title="Brave's Blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://blog.weihua.life/monkey-patching-for-kaminari/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>Kaminari View 中增加总数显示以及修改显示逻辑 - Brave's Blog</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Brave's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Brave's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Kaminari View 中增加总数显示以及修改显示逻辑
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-08-10
+        </span><span class="post-category">
+            <a href="/categories/Ruby-On-Rails/">Ruby On Rails</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是-Monkey-Patch？"><span class="toc-text">什么是 Monkey Patch？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现方案"><span class="toc-text">实现方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#增加总条数显示"><span class="toc-text">增加总条数显示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#始终显示分页器"><span class="toc-text">始终显示分页器</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><p>最近有两个需求都是关于修改分页器的展示效果的，但是 <code>Kaminari</code> 这个 gem 内置的方法限定了效果，所以要覆盖内置的方法，我们使用 <code>Monkey Patch</code> 来实现，就是所谓的猴子补丁。</p>
+<h3 id="什么是-Monkey-Patch？"><a href="#什么是-Monkey-Patch？" class="headerlink" title="什么是 Monkey Patch？"></a>什么是 Monkey Patch？</h3><blockquote>
+<p>一种在不改变原始源代码的情况下扩展或修改动态语言的运行时代码的方法。</p>
+<p>使用猴子补丁的目的：<br>1、追加功能<br>2、功能变更<br>3、修正程序错误<br>4、增加钩子，在执行某个方法的同时执行一些其他的处理，如打印日志，实现AOP等<br>5、缓存，在计算量很大，结算之后的结果可以反复使用的情况下，在一次计算完成之后，对方法进行替换可以提高处理速度。</p>
+</blockquote>
+<h3 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h3><h4 id="增加总条数显示"><a href="#增加总条数显示" class="headerlink" title="增加总条数显示"></a>增加总条数显示</h4><p>Kaminari 分页器在 View 中所使用的 <code>paginate</code> 方法是不返回 total_count 的，当然也有人提交了 <a href="https://github.com/kaminari/kaminari/pull/711" target="_blank" rel="noopener">Pull Requests</a>，但是被 Closed 掉了，所以我们这里把它实现回来。</p>
+<p>首先需要在创建 <code>config/initializers/kaminari_ext.rb</code> 这么一个文件，然后覆盖 Kaminari 的 paginate 方法。</p>
+<p>原方法在 <code>gems/kaminari-core-1.2.0/lib/kaminari/helpers/helper_methods.rb</code> 中，感兴趣的可以根据自己使用的版本看看源码。</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Kaminari</span></span></span><br><span class="line">  <span class="class"><span class="keyword">module</span> <span class="title">Helpers</span></span></span><br><span class="line">    <span class="class"><span class="keyword">module</span> <span class="title">HelperMethods</span></span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">paginate</span><span class="params">(scope, <span class="symbol">paginator_class:</span> Kaminari::Helpers::Paginator, <span class="symbol">template:</span> <span class="literal">nil</span>, **options)</span></span></span><br><span class="line">        options[<span class="symbol">:total_count</span>] <span class="params">||</span>= scope.total_count <span class="comment"># 返回 total_count</span></span><br><span class="line">        options[<span class="symbol">:total_pages</span>] <span class="params">||</span>= scope.total_pages</span><br><span class="line">        options.reverse_merge! <span class="symbol">current_page:</span> scope.current_page, <span class="symbol">per_page:</span> scope.limit_value, <span class="symbol">remote:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">        paginator = paginator_class.new (template <span class="params">||</span> <span class="keyword">self</span>), **options</span><br><span class="line">        paginator.to_s</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>把以上代码添加进去之后，我们还需要修改一下 Kaminari 的 <code>app/views/kaminari/_paginator.html.erb</code> 模板文件，让页面可以显示总数。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">paginator.render</span> <span class="attr">do</span> %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"pagination"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"col-md-2 text-left"</span> <span class="attr">style</span>=<span class="string">"font-size:15px;padding-top:5px"</span>&gt;</span></span><br><span class="line">        每页 <span class="tag">&lt;<span class="name">%=</span> <span class="attr">per_page</span> %&gt;</span> 条</span><br><span class="line">        总共 <span class="tag">&lt;<span class="name">%=</span> <span class="attr">total_count</span> %&gt;</span> 条</span><br><span class="line">      <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="始终显示分页器"><a href="#始终显示分页器" class="headerlink" title="始终显示分页器"></a>始终显示分页器</h4><p>Kaminari 分页器设定是大于一页时才会显示分页器，我们这里改动一下 <code>render</code> 方法的逻辑，使页面始终显示分页器。</p>
+<p>这里的修改一样是在 <code>config/initializers/kaminari_ext.rb</code> 中覆盖 <code>render</code> 方法。</p>
+<p>原方法在 <code>gems/2.6.0/gems/kaminari-core-1.2.0/lib/kaminari/helpers/paginator.rb</code> 中，感兴趣的可以根据自己使用的版本看看源码。</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Kaminari</span></span></span><br><span class="line">  <span class="class"><span class="keyword">module</span> <span class="title">Helpers</span></span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">render</span><span class="params">(&amp;block)</span></span></span><br><span class="line">      instance_eval(&amp;block) <span class="keyword">if</span> @options[<span class="symbol">:total_pages</span>] &gt;= <span class="number">1</span></span><br><span class="line">      @output_buffer.presence</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>最后我们重启 Rails 服务，使我们刚刚的修改生效。<br><img src="https://i.imgur.com/hwXtTI4.jpg" alt="显示效果"></p>
+<hr>
+<p>参考资料</p>
+<ul>
+<li><a href="https://github.com/kaminari/kaminari/pull/711" target="_blank" rel="noopener">add total_count to Paginator default view</a></li>
+<li><a href="https://stackoverflow.com/questions/12310343/always-show-pagination-controls-for-kaminari" target="_blank" rel="noopener">Always show pagination controls for Kaminari</a></li>
+<li><a href="https://github.com/kaminari/kaminari/issues/275" target="_blank" rel="noopener">Display Pagination With Only One Page</a></li>
+</ul>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://blog.weihua.life">ueiu</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://blog.weihua.life/monkey-patching-for-kaminari/">https://blog.weihua.life/monkey-patching-for-kaminari/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/Ruby-On-Rails/">Ruby On Rails</a>
+            <a href="/tags/Gems/">Gems</a>
+            <a href="/tags/Kaminari/">Kaminari</a>
+            </div>
+        
+        <nav class="post-nav"><a class="next" href="/rails-flash-disappear/">
+        <span class="next-text nav-default">Rails 错误提示 Flash 使用</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:bautuoyoul@email.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/ueiu" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">ueiu</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+<!-- valine Comments version: 1.4.9 -->
+<script src="//unpkg.com/valine@1.4.9/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        app_id: "mHDXFlCsnIWo19Rl2vjd4ESz-9Nh9j0Va",
+        app_key: "2CUBhdIzMSJBOt6snJnF68tY",
+        placeholder: "在这高谈阔论吧！",
+        avatar: 'retro',
+        pageSize: '10',
+        recordIP: 'true'
+    });
+</script>
+
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

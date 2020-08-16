@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.weihua.life/monkey-patching-for-kaminari/</loc>
+    
+    <lastmod>2020-08-16T09:23:30.819Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.weihua.life/rails-flash-disappear/</loc>
     
-    <lastmod>2020-08-09T10:07:55.350Z</lastmod>
+    <lastmod>2020-08-16T06:27:27.634Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/mac-install-secp256k1/</loc>
+    
+    <lastmod>2020-08-16T06:27:27.623Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/mac-install-imagemagick/</loc>
+    
+    <lastmod>2020-08-16T06:27:27.622Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/activeadmin-customize-filter-search/</loc>
+    
+    <lastmod>2020-08-16T06:27:27.621Z</lastmod>
     
   </url>
   
@@ -16,27 +44,6 @@
   </url>
   
   <url>
-    <loc>https://blog.weihua.life/mac-install-secp256k1/</loc>
-    
-    <lastmod>2020-08-09T09:13:36.859Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.weihua.life/activeadmin-customize-filter-search/</loc>
-    
-    <lastmod>2020-08-09T09:01:30.079Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.weihua.life/mac-install-imagemagick/</loc>
-    
-    <lastmod>2020-07-19T17:21:00.709Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.weihua.life/googleb601bd0248bc729a.html</loc>
     
     <lastmod>2020-07-19T10:18:39.648Z</lastmod>
@@ -44,14 +51,14 @@
   </url>
   
   <url>
-    <loc>https://blog.weihua.life/tags/index.html</loc>
+    <loc>https://blog.weihua.life/categories/index.html</loc>
     
     <lastmod>2020-07-19T10:18:39.648Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.weihua.life/categories/index.html</loc>
+    <loc>https://blog.weihua.life/tags/index.html</loc>
     
     <lastmod>2020-07-19T10:18:39.648Z</lastmod>
     

@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.weihua.life//monkey-patching-for-kaminari/</loc>
+    <lastmod>2020-08-16</lastmod>
+  </url>
+  <url>
     <loc>https://blog.weihua.life//rails-flash-disappear/</loc>
-    <lastmod>2020-08-09</lastmod>
+    <lastmod>2020-08-16</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.weihua.life//mac-install-secp256k1/</loc>
+    <lastmod>2020-08-16</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.weihua.life//mac-install-imagemagick/</loc>
+    <lastmod>2020-08-16</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.weihua.life//activeadmin-customize-filter-search/</loc>
+    <lastmod>2020-08-16</lastmod>
   </url>
   <url>
     <loc>https://blog.weihua.life//docker-backup-postgresql/</loc>
     <lastmod>2020-08-09</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.weihua.life//mac-install-secp256k1/</loc>
-    <lastmod>2020-08-09</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.weihua.life//activeadmin-customize-filter-search/</loc>
-    <lastmod>2020-08-09</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.weihua.life//mac-install-imagemagick/</loc>
-    <lastmod>2020-07-19</lastmod>
   </url>
   <url>
     <loc>https://blog.weihua.life//switching-npm-mirror/</loc>
