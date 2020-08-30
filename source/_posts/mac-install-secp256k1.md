@@ -45,7 +45,7 @@ git clone git@github.com:bitcoin-core/secp256k1.git
 # 以下步骤都在 clone 的 secp256k1 中进行
 1. sh autogen.sh
 # 这一步与 github 中的不同，github 的还是会出错，视情况输入命令吧
-2. sh onfigure --enable-module-recovery
+2. sh configure --enable-module-recovery
 3. make
 4. make check
 5. sudo make install
