@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.weihua.life/tzinfo-data-warn-on-new-rails-project/</loc>
+    
+    <lastmod>2020-10-06T17:55:29.747Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.weihua.life/mac-install-secp256k1/</loc>
     
     <lastmod>2020-08-27T07:23:18.394Z</lastmod>
@@ -93,14 +100,14 @@
   </url>
   
   <url>
-    <loc>https://blog.weihua.life/configuration-docker-mirror-acceleration/</loc>
+    <loc>https://blog.weihua.life/centos-deploy-rsshub/</loc>
     
     <lastmod>2020-07-19T10:18:39.644Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.weihua.life/centos-deploy-rsshub/</loc>
+    <loc>https://blog.weihua.life/configuration-docker-mirror-acceleration/</loc>
     
     <lastmod>2020-07-19T10:18:39.644Z</lastmod>
     
