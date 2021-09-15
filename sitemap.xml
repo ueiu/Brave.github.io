@@ -2,114 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.weihua.life/tzinfo-data-warn-on-new-rails-project/</loc>
+    <loc>https://blog.weihua.life/tags/index.html</loc>
     
-    <lastmod>2020-10-06T17:55:29.747Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.weihua.life/mac-install-secp256k1/</loc>
-    
-    <lastmod>2020-08-27T07:23:18.394Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.weihua.life/monkey-patching-for-kaminari/</loc>
-    
-    <lastmod>2020-08-16T09:23:30.819Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.weihua.life/rails-flash-disappear/</loc>
-    
-    <lastmod>2020-08-16T06:27:27.634Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.weihua.life/mac-install-imagemagick/</loc>
-    
-    <lastmod>2020-08-16T06:27:27.622Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.weihua.life/activeadmin-customize-filter-search/</loc>
-    
-    <lastmod>2020-08-16T06:27:27.621Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.weihua.life/docker-backup-postgresql/</loc>
-    
-    <lastmod>2020-08-09T09:14:51.265Z</lastmod>
+    <lastmod>2021-08-21T15:40:45.002Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.weihua.life/googleb601bd0248bc729a.html</loc>
     
-    <lastmod>2020-07-19T10:18:39.648Z</lastmod>
+    <lastmod>2021-08-21T15:40:45.001Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.weihua.life/categories/index.html</loc>
     
-    <lastmod>2020-07-19T10:18:39.648Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.weihua.life/tags/index.html</loc>
-    
-    <lastmod>2020-07-19T10:18:39.648Z</lastmod>
+    <lastmod>2021-08-21T15:40:45.001Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.weihua.life/switching-npm-mirror/</loc>
     
-    <lastmod>2020-07-19T10:18:39.647Z</lastmod>
+    <lastmod>2021-08-21T15:40:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/tzinfo-data-warn-on-new-rails-project/</loc>
+    
+    <lastmod>2021-08-21T15:40:45.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.weihua.life/about/index.html</loc>
     
-    <lastmod>2020-07-19T10:18:39.647Z</lastmod>
+    <lastmod>2021-08-21T15:40:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/rails-flash-disappear/</loc>
+    
+    <lastmod>2021-08-21T15:40:44.999Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.weihua.life/mac-set-tomcat-uriencoding/</loc>
     
-    <lastmod>2020-07-19T10:18:39.646Z</lastmod>
+    <lastmod>2021-08-21T15:40:44.998Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/monkey-patching-for-kaminari/</loc>
+    
+    <lastmod>2021-08-21T15:40:44.998Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/mac-install-secp256k1/</loc>
+    
+    <lastmod>2021-08-21T15:40:44.997Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/mac-install-imagemagick/</loc>
+    
+    <lastmod>2021-08-21T15:40:44.996Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.weihua.life/lets-encrypt-free-applicantion/</loc>
     
-    <lastmod>2020-07-19T10:18:39.645Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.weihua.life/centos-deploy-rsshub/</loc>
-    
-    <lastmod>2020-07-19T10:18:39.644Z</lastmod>
+    <lastmod>2021-08-21T15:40:44.995Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.weihua.life/configuration-docker-mirror-acceleration/</loc>
     
-    <lastmod>2020-07-19T10:18:39.644Z</lastmod>
+    <lastmod>2021-08-21T15:40:44.994Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/docker-backup-postgresql/</loc>
+    
+    <lastmod>2021-08-21T15:40:44.994Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/activeadmin-customize-filter-search/</loc>
+    
+    <lastmod>2021-08-21T15:40:44.993Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.weihua.life/centos-deploy-rsshub/</loc>
+    
+    <lastmod>2021-08-21T15:40:44.993Z</lastmod>
     
   </url>
   
